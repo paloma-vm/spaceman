@@ -63,24 +63,15 @@ def get_guessed_word(secret_word, letters_guessed):
     # the letters that have not been guessed yet
 
     word_display = ["_"] * len(secret_word)
-    
 
-    def update():
-        for i in word_display:
-            print(i, end = ' ')
-        print()
+    for i in range(len(secret_word)):
+        if secret_word[i] in letters_guessed:
+            word_display = word_display[:i] + secret_word[i] + word_display[i +1:]
 
-    if is_guess_in_word == True:
-        index = 0
-        for i in list(secret_word):
-            if i == guess:
-                word_display[index] = guess
-            index += 1
-        update()
-    if is_guess_in_word == False:
-        letters_guessed.append(guess)
-
-    print(word_display)
+    for i in word_display:
+        print(i, end = ' ')
+   
+    print(' '.join(word_display))
     print(letters_guessed)
 
 
@@ -139,6 +130,7 @@ def spaceman(secret_word):
         guess = input("Please guess a letter:")
         # if len(guess) > 1:
         #     print("You may only guess one letter at a time")
+        letters_guessed.append(guess)
             
 
         #TODO: Check if the guessed letter is in the secret or not and give the player feedback
@@ -170,3 +162,10 @@ def spaceman(secret_word):
 #These function calls that will start the game
 secret_word = load_word()
 spaceman(secret_word)
+
+def test():
+    # add test code here
+    secret_word = load_word()
+    spaceman(secret_word)
+    
+test()
