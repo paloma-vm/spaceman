@@ -34,12 +34,12 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    is_word_guessed = True
     for i in range(len(secret_word)):
         if secret_word[i] not in letters_guessed:
+            # maybe do an or statement to check for duplicate letters?
             return False
         else: 
-            print("You solved the mystery word," + secret_word +"!")
+            return True
         
 
 
@@ -62,26 +62,21 @@ def get_guessed_word(secret_word, letters_guessed):
     # guessed correctly so far that are saved in letters_guessed and underscores for 
     # the letters that have not been guessed yet
 
-    word_display = ["_"] * len(secret_word)
+    word_display = "_" * len(secret_word)
 
     for i in range(len(secret_word)):
         if secret_word[i] in letters_guessed:
-            word_display = word_display[:i] + secret_word[i] + word_display[i +1:]
+            word_display = word_display[:i] + secret_word[i] + word_display[i+1:]
 
-    for i in word_display:
-        print(i, end = ' ')
+#   This is what I have so far, I am stuck on how to get it to check for duplicate letters
+# sometimes when there is a duplicate letter, it says the puzzle is solved when it is not
+
+
+
    
     print(' '.join(word_display))
-    print(letters_guessed)
+    print("Letters you have guessed: ", letters_guessed)
 
-
-
-
-            
-            
-
-
-        
 
 
 
@@ -104,6 +99,10 @@ def is_guess_in_word(guess, secret_word):
     else:
         return False
 
+# ----------------------------
+# find how many times a letter occurs in the word
+
+# --------------------------------
 
 
 def spaceman(secret_word):
@@ -130,34 +129,29 @@ def spaceman(secret_word):
         guess = input("Please guess a letter:")
         # if len(guess) > 1:
         #     print("You may only guess one letter at a time")
+    
         letters_guessed.append(guess)
             
 
         #TODO: Check if the guessed letter is in the secret or not and give the player feedback
-    
-    
+
         if is_guess_in_word(guess, secret_word) == True:
             print("The letter you guessed appears in the mystery word!")
         if is_guess_in_word(guess, secret_word) == False:
             tries_remaining -= 1
-            print("Bummer! The letter you guessed is not in the mystery word. You have " + str(tries_remaining) + " more tries left.")
+            print("Bummer! The letter you guessed is not in the mystery word. You are allowed " + str(tries_remaining) + " more incorrect tries.")
             
 
         #TODO: show the guessed word so far
         get_guessed_word(secret_word, letters_guessed)
         #TODO: check if the game has been won or lost
-        is_word_guessed(secret_word, letters_guessed)
+        if is_word_guessed(secret_word, letters_guessed) == True:
+            print("You solved the mystery word," + secret_word +"!")
 
         if tries_remaining == 0:
-            print("You failed to launch Spaceman :_(")
+            print("You failed to launch Spaceman :_(\nThe mystery word was: " + secret_word)
             break
             
-
-
-
-
-
-
 
 #These function calls that will start the game
 secret_word = load_word()
@@ -168,4 +162,4 @@ def test():
     secret_word = load_word()
     spaceman(secret_word)
     
-test()
+# test()
