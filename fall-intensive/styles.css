@@ -1,0 +1,32 @@
+body {
+    margin: 2rem;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
+    grid-template-areas:"h h h",
+                        "m1 m2 m3",
+                        "f f f";
+    width: 80%;
+    /* justify-content: center;
+    align-content: center; */
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    justify-content: center;
+    align-content: center;
+
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    
+}
