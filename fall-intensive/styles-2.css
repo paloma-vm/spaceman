@@ -1,47 +1,56 @@
-body {
+/* body {
     margin: 2rem;
-}
+} */
 
-h1 {
-    display: flex;
-}
-.items {
+
+body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 2.0rem;
     grid-template-areas:"h h h",
-                        "m1 m2 m3",
+                        "m m m",
                         "f f f";
     
     justify-content: center;
     width: 90%;
     margin: auto;
     /* right now just the items are on a grid.  Do I want the whole page 
-    on the same grid? */
-
-    
+    on the same grid? */    
+}
+.page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    grid-area: h;
 }
 
-/* section {
+.items {
+    grid-area: m;
+    /* grid-area: 2 / 1 / span 1 / span 3; */
+    /* items start on row 2 column 1 and span 1 row and 3 columns */
     display: flex;
-    flex-direction: column;
-    border: 1px solid;
-    justify-content: center;
-    align-content: center;
-    padding: 1rem;
-} */
+    justify-content: space-between;
+    margin: auto;
+    /* padding: 0 2rem; */
+}
 
 .item {
     display: flex;
     flex-direction: column;
     border: 1px solid;
-    justify-content: center;
-    align-content: center;
+    justify-items: space-between;
+    align-items: space-between;
+    margin: 1rem;
+    /* align-content: center; */
+    /* padding: 0 1rem; 
+    this doesn't work, I want padding between the boxes*/
+    
     
 }
 
 ul {
+    grid-area: f;
     display: flex;
     justify-content: space-between;
     list-style-type: none;
